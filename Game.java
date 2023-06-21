@@ -19,8 +19,8 @@ public class Game {
     
     boolean play = true;
     
+    String highScore = "false";
     while (play) {
-      String highScore = "false";
       int tries = playGame(name, input);
       if (tries < 11) {
         highScore = checkHighScore(highScore, tries);
@@ -28,6 +28,7 @@ public class Game {
       play = playAgain(name, input);
     }
     input.close();
+    System.out.println("Your best score for today was: " + highScore + " tries.");
   }
   
 
