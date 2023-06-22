@@ -14,28 +14,35 @@ public class Game {
     
     //clear the screen
     System.out.print("\033[H\033[2J");
-    System.out.println("Hi, " + name + ", I'm thinking of a number between 0 and 100.");
-    
-    
+    System.out.printf("Hi, %s, I'm thinking of a number between 0 and 100.", name);
+        
     boolean play = true;
     
     String highScore = "false";
     while (play) {
+
       int tries = playGame(name, input);
       if (tries < 11) {
         highScore = checkHighScore(highScore, tries);
       }
+
       play = playAgain(name, input);
+
     }
+    
     input.close();
-    System.out.println("Your best score for today was: " + highScore + " tries.");
+    System.out.printf("Your best score for today was: %s tries", highScore);
+  
   }
   
 
-  private static int playGame(String name, Scanner input){
+  private static int playGame(String name, Scanner input) {
+    
     Random rand = new Random();
     int number = rand.nextInt(101);
+    
     System.out.println("Try to guess the number.");
+    
     int tries = 0;
     int guess = number + 1;
     
@@ -48,11 +55,11 @@ public class Game {
       }
 
       if (guess == number) {
-        System.out.println("\nCongratulations " + name + ", you got it in " + tries + " tries!");
+        System.out.printf("\nCongratulations %s, you got it in %d tries!", name, tries);
       }
+
       else{
-        String response = guess < number ? "Too Low." : "Too High.";
-        System.out.println(response + " Guess again. \n");
+        System.out.printf("%s Guess again. \n", guess < number ? "Too Low." : "Too High.");
       }
     }
     return tries;
@@ -67,7 +74,7 @@ public class Game {
     }
     
     else {
-      System.out.println("The current high score is " + highScore + " tries. Can you beat that?");
+      System.out.printf("The current high score is %s tries. Can you beat that?", highScore);
     }
     return highScore;
   }
